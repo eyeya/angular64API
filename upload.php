@@ -6,10 +6,15 @@ require('header.php');
 // exit(json_encode(["picture"=>$_FILES["picture"]]));
 // อ่านค่า userid เพื่อใช้เปลี่ยนชื่อไฟล์ก่อน upload
 
-// กรณีเพิ่มข้อมูล .=h8jk ทฟป
+// กรณีเพิ่มข้อมูล 
+if($_POST["userid" ==""]){
 $sql=$con->query("SELECT MAX(userid) AS userid FROM tbuser");
 $result=$sql-> fetch_array();
 $userid=$result["userid"];
+}else{
+   $userid = $_POST["userid"];
+}
+
 //upload
 if ($_FILES["picture"]){
     $name=$_FILES["picture"]["name"];
